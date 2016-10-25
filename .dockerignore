@@ -1,5 +1,9 @@
 .git
 # Java app
-ddprofiler
+ddprofiler/.gradle
+ddprofiler/build
 # Virtual environment
 venv
+# Vagrant
+.vagrant
+Vagrantfile
