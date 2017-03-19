@@ -70,6 +70,12 @@ def convert(input):
         res = "error: " + str(e)
     return res
 
+@app.route('/dongquery/cleaning')
+def dong():
+    str = "hello world"
+    jsonstr = jsonify(str)
+    return jsonstr
+
 
 if __name__ == '__main__':
     app.run()

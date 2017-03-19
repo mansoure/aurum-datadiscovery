@@ -1,0 +1,37 @@
+import pandas
+from subprocess import call
+from sklearn.externals import joblib
+
+url = "/Users/emansour/elab/DAGroup/DataCivilizer/Aurum-GitHub/fkc_labeled_data/chembl_edges_test.csv"
+names = ['uniquenessRatioN1', 'uniquenessRatioN2', 'colNameSimilarityRatio','isSubsetString', 'coverageRatio', 'averageLenDiffRatio', 'tableSize']
+onames = ['Table1',	'Table2',	'Column1',	'Column2']
+testData = pandas.read_csv(url, header=0, usecols=names)
+
+outData = pandas.read_csv(url, header=0, usecols=onames)
+
+loaddedRF = joblib.load('FKCModel_RF_StratifiedKFold.pkl')
+
+prediction_proba = loaddedRF.predict_proba(testData)
+prediction = loaddedRF.predict(testData)
+# print(prediction_proba)
+
+
+call(["ls", "-l"])
+
+call()
+
+
+for el in prediction:
+    print(el)
+#
+# for row in outData._values :
+#     print(row)
+
+iD = 1
+
+# for i,j in zip(outData._values,prediction):
+#     print(iD, i, j)
+#     iD=iD+1
+
+
+
