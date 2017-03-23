@@ -174,19 +174,19 @@ class SSAPI:
 
         print("Does L42 cancel any L4?")
         print("Original L4: " + str(len(all_matchings[MatchingType.L4_CLASSNAME_RELATIONNAME_SYN])))
-        total_neg = len(neg_l42_matchings)
         cancelled_l4_matchings = []
         l4_dict = dict()
-        for matching in l4_matchings:
+        l4_matchings_set = set(l4_matchings)
+        for matching in l4_matchings_set:
             l4_dict[matching] = 1
         total_cancelled = 0
         for m in neg_l42_matchings:
             if m in l4_dict:
                 total_cancelled += 1
-                l4_matchings.remove(m)
-                print("cancelled by L42 : " + str(m))
+                l4_matchings_set.remove(m)
                 cancelled_l4_matchings.append(m)
-        all_matchings[MatchingType.L4_CLASSNAME_RELATIONNAME_SYN] = l4_matchings
+        l4_matchings = list(l4_matchings_set)
+        all_matchings[MatchingType.L4_CLASSNAME_RELATIONNAME_SYN] = l4_matchings  # update with corrections
 
         print("Cancelled: " + str(total_cancelled))
         print("Resulting L4: " + str(len(all_matchings[MatchingType.L4_CLASSNAME_RELATIONNAME_SYN])))
@@ -233,6 +233,7 @@ class SSAPI:
                 cancelled_l5_matchings.append(m)
         all_matchings[MatchingType.L5_CLASSNAME_ATTRNAME_SYN] = l5_matchings
         print("Cancelled: " + str(total_cancelled))
+        all_matchings[MatchingType.L5_CLASSNAME_ATTRNAME_SYN] = l5_matchings
         print("Resulting L5: " + str(len(all_matchings[MatchingType.L5_CLASSNAME_ATTRNAME_SYN])))
 
         ## L6: [Relations] -> [Class names] (semantic groups)
@@ -260,6 +261,7 @@ class SSAPI:
         for values in all_matchings.values():
             total_matchings_pre_combined += len(values)
         print("ALL_matchings: " + str(total_matchings_pre_combined))
+
         combined_matchings = matcherlib.combine_matchings(all_matchings)
         print("COMBINED_matchings: " + str(len(combined_matchings.items())))
 
@@ -1230,6 +1232,60 @@ def print_table_attrs_for(path_to_serialized_model):
     print("DONE")
 
 
+def test_chembl_annotations(path_to_serialized_model):
+    # Deserialize model
+    network = fieldnetwork.deserialize_network(path_to_serialized_model)
+    # Create client
+    store_client = StoreHandler()
+
+    # Load glove model
+    print("Loading language model...")
+    path_to_glove_model = "../glove/glove.6B.100d.txt"
+    glove_api.load_model(path_to_glove_model)
+    print("Loading language model...OK")
+
+    # Retrieve indexes
+    schema_sim_index = io.deserialize_object(path_to_serialized_model + 'schema_sim_index.pkl')
+    content_sim_index = io.deserialize_object(path_to_serialized_model + 'content_sim_index.pkl')
+
+    # Create ontomatch api
+    om = SSAPI(network, store_client, schema_sim_index, content_sim_index)
+    # Load parsed ontology
+    om.add_krs([("efo", "cache_onto/efo.pkl")], parsed=True)
+    om.add_krs([("clo", "cache_onto/clo.pkl")], parsed=True)
+    om.add_krs([("bao", "cache_onto/bao.pkl")], parsed=True)
+    om.add_krs([("uberon", "cache_onto/uberon.pkl")], parsed=True)  # parse again
+    #om.add_krs([("go", "cache_onto/go.pkl")], parsed=True)  # parse again
+    # om.add_krs([("dbpedia", "cache_onto/dbpedia.pkl")], parsed=True)
+
+    print("Finding matchings...")
+    st = time.time()
+    combined_matchings = om.find_matchings()
+
+    def list_from_dict(combined):
+        l = []
+        for k, v in combined.items():
+            matchings = v.get_matchings()
+            for el in matchings:
+                l.append(el)
+        return l
+
+    matchings = list_from_dict(combined_matchings)
+
+    matchings = matcherlib.summarize_matchings_to_ancestor(om, matchings)
+    et = time.time()
+    print("Finding matchings...OK")
+    print("Took: " + str(et - st))
+
+    print("Writing MATCHINGS output to disk...")
+    with open('MATCHINGS_chembl_annotations', 'w') as f:
+        for k, v in matchings.items():
+            lines = v.print_serial()
+            for l in lines:
+                f.write(l + '\n')
+    print("Writing MATCHINGS output to disk...OK")
+
+
 def debug_neg_signal(path_to_serialized_model):
     # Deserialize model
     network = fieldnetwork.deserialize_network(path_to_serialized_model)
@@ -1250,6 +1306,7 @@ def debug_neg_signal(path_to_serialized_model):
     om = SSAPI(network, store_client, schema_sim_index, content_sim_index)
     # Load parsed ontology
     om.add_krs([("efo", "cache_onto/efo.pkl")], parsed=True)
+
     #om.add_krs([("clo", "cache_onto/clo.pkl")], parsed=True)
     #om.add_krs([("bao", "cache_onto/bao.pkl")], parsed=True)
     #om.add_krs([("go", "cache_onto/go.pkl")], parsed=True)  # parse again
@@ -1338,8 +1395,6 @@ def debug_neg_signal(path_to_serialized_model):
     print("Resulting L5: " + str(len(l5_matchings)))
 
 
-
-
 if __name__ == "__main__":
 
     #test_find_semantic_sim()
@@ -1353,6 +1408,9 @@ if __name__ == "__main__":
 
     #test_5_n_52("../models/chembl22/")
     #exit()
+
+    test_chembl_annotations("../models/chembl22/")
+    exit()
 
     debug_neg_signal("../models/chembl22/")
     exit()
