@@ -1409,8 +1409,8 @@ if __name__ == "__main__":
     #test_5_n_52("../models/chembl22/")
     #exit()
 
-    test_chembl_annotations("../models/chembl22/")
-    exit()
+    # test_chembl_annotations("../models/chembl22/")
+    # exit()
 
     debug_neg_signal("../models/chembl22/")
     exit()
