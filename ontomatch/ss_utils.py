@@ -294,7 +294,7 @@ def compute_semantic_similarity(sv1, sv2, penalize_unknown_word=False, add_exact
     accum = []
     for a, b in itertools.product(sv1, sv2):
         if a is not None and b is not None:
-            if not (a == b).all() or add_exact_matches:  # otherwise this just does not add up
+            if add_exact_matches or not (a == b).all():  # otherwise this just does not add up
                 total_comparisons += 1
                 sim = glove_api.semantic_distance(a, b)
                 accum.append(sim)

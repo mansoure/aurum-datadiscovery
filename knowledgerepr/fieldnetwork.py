@@ -177,7 +177,7 @@ class FieldNetwork:
                 total_relationships += 1
                 print(x)
         if relation == Relation.SCHEMA_SIM:
-            for x in self.enumerate_relation(Relation.SCHEMA):
+            for x in self.enumerate_relation(Relation.SCHEMA_SIM):
                 total_relationships += 1
                 print(x)
         if relation == Relation.PKFK:

@@ -231,7 +231,7 @@ def build_content_sim_mh_text(network, mh_signatures):
     # Materialize signatures for convenience
     mh_sig_obj = []
 
-    content_index = MinHashLSH(threshold=0.7, num_perm=512)
+    content_index = MinHashLSH(threshold=0.6, num_perm=512)
 
     # Create minhash objects and index
     for nid, mh_sig in mh_signatures:
@@ -352,7 +352,7 @@ def build_content_sim_relation_num_overlap_distr(network, id_sig):
         else:
             network.add_relation(nid1, nid2, Relation.INCLUSION_DEPENDENCY, score)
 
-    overlap = 0.85
+    overlap = 0.7
 
     fields = []
     domains = []
@@ -415,7 +415,7 @@ def build_content_sim_relation_num_overlap_distr(network, id_sig):
 
                         # min overlap for precision
                         actual_overlap = compute_overlap(ref_x_left, ref_x_right, candidate_x_left, candidate_x_right)
-                        if actual_overlap >= 0.3:
+                        if actual_overlap >= 0.1:
                             connect(candidate_nid, ref_nid, 1, inddep=True)
                     """
                     if candidate_x_left >= ref_x_left and candidate_x_right <= ref_x_right:
@@ -627,7 +627,7 @@ def build_pkfk_relation(network):
         n_card = network.get_cardinality_of(n)
         if n == '2314808454' or n == '1504465753':
             debug = True
-        if n_card > 0.7:  # Early check if this is a candidate
+        if n_card > 0.6:  # Early check if this is a candidate
             neighborhood = get_neighborhood(n)
             for ne in neighborhood:
                 if ne is not n:

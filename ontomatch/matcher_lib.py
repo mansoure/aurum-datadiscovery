@@ -619,6 +619,52 @@ def find_relation_class_attr_name_matching(network, kr_handlers, minhash_sim_thr
     print("l5: " + str((et-st)))
     return matchings
 
+# for evaluation section 6.3.2
+def find_negative_sem_signal_attr_sch_sch(attribute1, attribute2,
+                                          sem_sim_threshold=0.5,
+                                          negative_signal_threshold=0.4,
+                                          sensitivity_neg_signal=0.5,
+                                          penalize_unknown_word=True,
+                                          add_exact_matches=False):
+    # TODO: find negative sem signals between schema elements (only)
+    st = time.time()
+    svs1 = []
+    field_name1 = attribute1
+    field_name1 = nlp.camelcase_to_snakecase(field_name1)
+    field_name1 = field_name1.lower()
+    field_name1 = field_name1.replace('_', ' ')
+    for token in field_name1.split():
+        if token not in stopwords.words('english'):
+            sv = glove_api.get_embedding_for_word(token)
+            if sv is not None:
+                svs1.append(sv)
+    svs2 = []
+    field_name2 = attribute2
+    field_name2 = nlp.camelcase_to_snakecase(field_name2)
+    field_name2 = field_name2.lower()
+    field_name2 = field_name2.replace('_', ' ')
+    for token in field_name2.split():
+        if token not in stopwords.words('english'):
+            sv2 = glove_api.get_embedding_for_word(token)
+            if sv2 is not None:
+                svs2.append(sv2)
+
+    neg_matchings = []
+    ban_index1, ban_index2 = get_ban_indexes(field_name1, field_name2)
+    svs_rel = removed_banned_vectors(ban_index1, svs1)
+    svs_cla = removed_banned_vectors(ban_index2, svs2)
+    semantic_sim, neg_signal = SS.compute_semantic_similarity(svs_rel, svs_cla,
+                                                              penalize_unknown_word=penalize_unknown_word,
+                                                              add_exact_matches=add_exact_matches)
+    # if neg_signal and semantic_sim < negative_signal_threshold:
+    #     match = ((names[idx_rel1][1][0], names[idx_rel1][1][1], names[idx_rel1][1][2]), names[idx_rel2][1])
+    #     neg_matchings.append(match)
+    # et = time.time()
+    # print("negative_sem_signal: " + str(et - st))
+    # return neg_matchings
+
+    return semantic_sim, neg_signal
+
 
 def find_relation_class_name_sem_matchings(network, kr_handlers,
                                            sem_sim_threshold=0.5,
