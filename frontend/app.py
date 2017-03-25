@@ -3,6 +3,10 @@ import sys
 import inspect
 from flask import Flask, jsonify
 from flask_cors import CORS, cross_origin
+from ML_FKC_Detection import FKC_Predication
+from pathselection import joinpathselection
+from integrating_civilizer import *
+from main import init_system
 
 # move to top level and import some more things
 currentdir = os.path.dirname(
@@ -21,6 +25,7 @@ from modelstore.elasticstore import KWType
 path_to_serialized_model = parentdir + "/models/mitdw/"
 network = fieldnetwork.deserialize_network(path_to_serialized_model)
 store_client = StoreHandler()
+ddapi= init_system("/Users/emansour/elab/DAGroup/DataCivilizer/Aurum-GitHub/aurum-datadiscovery/models/mitdw/")
 api = API(network, store_client)
 
 # add the tuple builtin function
@@ -95,12 +100,24 @@ def inspect(general_input):
 
 @app.route('/clean/<general_source>/<general_target>')
 def clean(general_source, general_target):
-    my_dict = {
-        'source': general_source,
-        'target': general_target,
-        'message': 'dummy response from the "clean" endpoint'}
+    # my_dict = {
+    #     'source': general_source,
+    #     'target': general_target,
+    #     'message': 'dummy response from the "clean" endpoint'}
 
-    return jsonify(my_dict)
+    # t1 = "Drupal_employee_directory.csv"
+    # t2 = "Employee_directory.csv"
+    t1 = general_source
+    t2 = general_target
+
+    drs_t1 = ddapi.drs_from_table(t1)
+    drs_t2 = ddapi.drs_from_table(t2)
+    drs_t1.set_table_mode()
+    drs_t2.set_table_mode()
+    res = ddapi.paths_between(drs_t1, drs_t2, Relation.PKFK, max_hops=1)
+    res = FKC_Predication.classifyJoinPaths(res)
+
+    return jsonify(res)
 
 
 

@@ -38,12 +38,17 @@ def classifyJoinPaths(res):
     f1.close()
 
     eID = 1
+    print("Calculating the features")
     for JP in edges_list:
+        print("... ... ", end="")
         # print(eID, JP)
-        Process = Popen([command, str(JP), str(eID), str(filename)], stdout=DEVNULL, stderr=STDOUT)
+        # Process = Popen([command, str(JP), str(eID), str(filename)], stdout=DEVNULL, stderr=STDOUT)
+        Process = Popen([command, str(JP), str(eID), str(filename)], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         Process.wait()
         # print(Process)
         eID = eID + 1
+
+    print("")
 
     range1 = [i for i in range(2,9)]
     names = ['uniquenessRatioN1', 'uniquenessRatioN2', 'colNameSimilarityRatio','isSubsetString', 'coverageRatio', 'averageLenDiffRatio', 'tableSizeRatio']
@@ -54,9 +59,18 @@ def classifyJoinPaths(res):
     prediction = loaddedRF.predict(testData)
 
     iD = 1
+    res = []
+    print("{0:90} {1:6} {2:10}".format("Join Path", "Class", "Propablity"))
+    # print ("Join Path                                   ,   Class,      Propablity")
     for i,j,k in zip(outData._values,prediction, prediction_proba):
-        print("-", i, j, k)
+        jp = str(i[0])
+        calss = str(j)
+        prob = str(k)
+        output = "{0:90} {1:6} {2:10}".format(jp, calss, prob)
+        res.append([jp, calss, prob])
+        print(output)
         iD=iD+1
+    # return res
 
 
 
