@@ -5,7 +5,7 @@ import csv
 
 def transform_to_cleaning_input(api, drs, projections):
     def get_attr_index(attr_name, table_name):
-        thefile = "/Users/emansour/elab/DAGroup/DataCivilizer/Aurum-GitHub/aurum-datadiscovery/cleaning/datasets_mitdw/mitdwh_sample" + str(table_name)
+        thefile = "/Users/emansour/elab/DAGroup/DataCivilizer/Aurum-GitHub/aurum-datadiscovery/cleaning/datasets_mitdw/mitdwh_sample/" + str(table_name)
         with open(thefile, "r") as ins:
             headers = []
             for line in ins:
