@@ -1,0 +1,5 @@
+JPID, JoinPath, uniquenessRatioN1, uniquenessRatioN2, colNameSimilarityRatio, isSubsetString, coverageRatio, averageLenDiffRatio, tableSizeRatio
+1, "Employee_directory.csv@Directory Full Name;Drupal_employee_directory.csv@Full Name", 0.99943554, 0.9994401, 0.4736842, 1, 0.3042017, 0.019256562, 0.008025383
+2, "Employee_directory.csv@Email Address Uppercase;Drupal_employee_directory.csv@Email Address", 0.94844776, 0.9509145, 0.5652174, 1, 0.3191364, 0.0027752921, 0.008025383
+3, "Drupal_employee_directory.csv@Office Phone;Employee_directory.csv@Office Phone", 0.80813736, 0.81787395, 1.0, 1, 0.42097998, 2.3942182E-5, 0.008025383
+4, "Drupal_employee_directory.csv@Mit Id;Employee_directory.csv@Mit Id", 1.0, 1.0, 1.0, 1, 0.3620754, 0.0, 0.008025383
