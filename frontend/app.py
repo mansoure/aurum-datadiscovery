@@ -17,7 +17,8 @@ from knowledgerepr import fieldnetwork
 from algebra import API
 from modelstore.elasticstore import KWType
 
-path_to_serialized_model = parentdir + "/test/testmodel/"
+# path_to_serialized_model = parentdir + "/test/testmodel/"
+path_to_serialized_model = parentdir + "/models/mitdw/"
 network = fieldnetwork.deserialize_network(path_to_serialized_model)
 store_client = StoreHandler()
 api = API(network, store_client)
