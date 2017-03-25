@@ -5,7 +5,7 @@ import csv
 
 def transform_to_cleaning_input(api, drs, projections):
     def get_attr_index(attr_name, table_name):
-        thefile = "/Users/emansour/elab/DAGroup/DataCivilizer/data/cleaningTest/" + str(table_name)
+        thefile = "/Users/emansour/elab/DAGroup/DataCivilizer/Aurum-GitHub/aurum-datadiscovery/cleaning/datasets_mitdw/mitdwh_sample" + str(table_name)
         with open(thefile, "r") as ins:
             headers = []
             for line in ins:
@@ -76,7 +76,7 @@ def transform_to_cleaning_input(api, drs, projections):
         lines.append(" ")
     #for l in lines:
     #    print(str(l))
-    f = open('/Users/emansour/elab/DAGroup/DataCivilizer/Demo/cidr-demo/datasets/q1.in', 'w')
+    f = open('/Users/emansour/elab/DAGroup/DataCivilizer/Aurum-GitHub/aurum-datadiscovery/cleaning/datasets_mitdw/q1.in', 'w')
     for l in lines:
         f.write(str(l) + '\n')
     f.close()
@@ -106,8 +106,8 @@ def format_join_pathsOneLine(res):
 
 def join_path_selection(api, res, projections):
     transform_to_cleaning_input(api, res, projections)
-    corpus = joinpathselection.Corpus("/Users/emansour/elab/DAGroup/DataCivilizer/data/cleaningTest/")
-    jps = joinpathselection.JPSelection(corpus, "/Users/emansour/elab/DAGroup/DataCivilizer/Demo/cidr-demo/datasets/gt.in", "/Users/emansour/elab/DAGroup/DataCivilizer/Demo/cidr-demo/datasets/error_est.in", "/Users/emansour/elab/DAGroup/DataCivilizer/Demo/cidr-demo/datasets/q1.in")
+    corpus = joinpathselection.Corpus("/Users/emansour/elab/DAGroup/DataCivilizer/Aurum-GitHub/aurum-datadiscovery/cleaning/datasets_mitdw/mitdwh_sample/")
+    jps = joinpathselection.JPSelection(corpus, "/Users/emansour/elab/DAGroup/DataCivilizer/Aurum-GitHub/aurum-datadiscovery/cleaning/datasets_mitdw/gt.in", "/Users/emansour/elab/DAGroup/DataCivilizer/Aurum-GitHub/aurum-datadiscovery/cleaning/datasets_mitdw/error_est.in", "/Users/emansour/elab/DAGroup/DataCivilizer/Aurum-GitHub/aurum-datadiscovery/cleaning/datasets_mitdw/q1.in")
     print(jps.select_join_path())
     return (corpus, jps)
 
