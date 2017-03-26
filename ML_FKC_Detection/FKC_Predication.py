@@ -60,14 +60,22 @@ def classifyJoinPaths(res):
 
     iD = 1
     res = []
-    print("{0:90} {1:6} {2:10}".format("Join Path", "Class", "Propablity"))
+    print("{0:95} {1:10} {2:12}".format("Join Path", "Class", "Propablity"))
     # print ("Join Path                                   ,   Class,      Propablity")
     for i,j,k in zip(outData._values,prediction, prediction_proba):
         jp = str(i[0])
-        calss = str(j)
+        if j == 1:
+            predication = "Real PKFK"
+        elif j==2:
+            predication = "Recommended"
+        elif j==3:
+            predication = "Not Useful"
+        else:
+            predication = "NA"
+
         prob = str(k)
-        output = "{0:90} {1:6} {2:10}".format(jp, calss, prob)
-        res.append([jp, calss, prob])
+        output = "{0:95} {1:10} {2:12}".format(jp, predication, prob)
+        res.append([jp, predication, prob])
         print(output)
         iD=iD+1
     # return res
