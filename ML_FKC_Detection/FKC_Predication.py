@@ -30,25 +30,25 @@ def classifyJoinPaths(res):
     # edges_list = ['research_companies.csv@res_stem_id;research_stem.csv@res_stem_id','binding_sites.csv@tid;target_dictionary.csv@tid']
     edges_list = format_join_pathsOneLine(res)
 
-    # try:
-    #     os.remove(filename)
-    # except OSError:
-    #     pass
-    # f1 = open(filename, 'a')
-    # f1.close()
-    #
-    # eID = 1
-    # print("Calculating the features")
-    # for JP in edges_list:
-    #     print("... ... ", end="")
-    #     # print(eID, JP)
-    #     # Process = Popen([command, str(JP), str(eID), str(filename)], stdout=DEVNULL, stderr=STDOUT)
-    #     Process = Popen([command, str(JP), str(eID), str(filename)], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    #     Process.wait()
-    #     # print(Process)
-    #     eID = eID + 1
-    #
-    # print("")
+    try:
+        os.remove(filename)
+    except OSError:
+        pass
+    f1 = open(filename, 'a')
+    f1.close()
+
+    eID = 1
+    print("Calculating the features")
+    for JP in edges_list:
+        print("... ... ", end="")
+        # print(eID, JP)
+        # Process = Popen([command, str(JP), str(eID), str(filename)], stdout=DEVNULL, stderr=STDOUT)
+        Process = Popen([command, str(JP), str(eID), str(filename)], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        Process.wait()
+        # print(Process)
+        eID = eID + 1
+
+    print("")
 
     range1 = [i for i in range(2,9)]
     names = ['uniquenessRatioN1', 'uniquenessRatioN2', 'colNameSimilarityRatio','isSubsetString', 'coverageRatio', 'averageLenDiffRatio', 'tableSizeRatio']
