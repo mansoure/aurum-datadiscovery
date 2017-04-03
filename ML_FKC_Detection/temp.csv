@@ -1,13 +1,13 @@
 JPID, JoinPath, uniquenessRatioN1, uniquenessRatioN2, colNameSimilarityRatio, isSubsetString, coverageRatio, averageLenDiffRatio, tableSizeRatio
 1, "Employee_directory.csv@Last Name;Drupal_employee_directory.csv@Last Name", 0.76763874, 0.7704367, 1.0, 1, 0.47262597, 0.005750497, 0.008025383
 2, "Drupal_employee_directory.csv@Personal Url;Employee_directory.csv@Personal Url", 0.10265024, 0.1042333, 1.0, 1, 0.41155234, 0.005239947, 0.008025383
-3, "Drupal_employee_directory.csv@Primary Title;Employee_directory.csv@Directory Title", 0.2424412, 0.26773283, 0.6, 0, 0.4701335, 0.026011705, 0.008025383
-4, "Drupal_employee_directory.csv@Middle Name;Employee_directory.csv@Middle Name", 0.080813736, 0.085606776, 1.0, 1, 0.556044, 0.0011955858, 0.008025383
-5, "Drupal_employee_directory.csv@Office Location;Employee_directory.csv@Office Location", 0.626913, 0.63367826, 1.0, 1, 0.55285037, 0.004244132, 0.008025383
-6, "Drupal_employee_directory.csv@Hr Org Unit Title;Employee_directory.csv@Department Name", 0.040686823, 0.04120414, 0.29411763, 0, 0.58447486, 0.09935791, 0.008025383
-7, "Drupal_employee_directory.csv@First Name;Employee_directory.csv@Name Known By", 0.38615155, 0.46566322, 0.0, 0, 0.42666668, 0.0862474, 0.008025383
-8, "Drupal_employee_directory.csv@Mit Id;Employee_directory.csv@Mit Id", 1.0, 1.0, 1.0, 1, 0.3620754, 0.0, 0.008025383
+3, "Drupal_employee_directory.csv@Middle Name;Employee_directory.csv@Middle Name", 0.080813736, 0.085606776, 1.0, 1, 0.556044, 0.0011955858, 0.008025383
+4, "Drupal_employee_directory.csv@Office Location;Employee_directory.csv@Office Location", 0.626913, 0.63367826, 1.0, 1, 0.55285037, 0.004244132, 0.008025383
+5, "Drupal_employee_directory.csv@Hr Org Unit Title;Employee_directory.csv@Department Name", 0.040686823, 0.04120414, 0.29411763, 0, 0.58447486, 0.09935791, 0.008025383
+6, "Drupal_employee_directory.csv@First Name;Employee_directory.csv@Name Known By", 0.38615155, 0.46566322, 0.0, 0, 0.42666668, 0.0862474, 0.008025383
+7, "Drupal_employee_directory.csv@Mit Id;Employee_directory.csv@Mit Id", 1.0, 1.0, 1.0, 1, 0.3620754, 0.0, 0.008025383
+8, "Employee_directory.csv@Full Name;Drupal_employee_directory.csv@Full Name", 0.99943554, 0.9994401, 1.0, 1, 0.36227825, 0.0026356094, 0.008025383
 9, "Employee_directory.csv@Primary Title;Drupal_employee_directory.csv@Directory Title", 0.24854186, 0.26446435, 0.6, 0, 0.4714185, 0.030661227, 0.008025383
-10, "Employee_directory.csv@Email Address;Drupal_employee_directory.csv@Email Address", 0.94844776, 0.9509145, 1.0, 1, 0.36918548, 0.0027752921, 0.008025383
-11, "Drupal_employee_directory.csv@Office Phone;Employee_directory.csv@Office Phone", 0.80813736, 0.81787395, 1.0, 1, 0.42097998, 2.3942182E-5, 0.008025383
-12, "Employee_directory.csv@Full Name Uppercase;Drupal_employee_directory.csv@Full Name", 0.99943554, 0.9994401, 0.4736842, 1, 0.0, 0.0026356094, 0.008025383
+10, "Drupal_employee_directory.csv@Primary Title;Employee_directory.csv@Primary Title", 0.2424412, 0.24854186, 1.0, 1, 0.51703256, 4.1766974E-4, 0.008025383
+11, "Employee_directory.csv@Email Address;Drupal_employee_directory.csv@Email Address", 0.94844776, 0.9509145, 1.0, 1, 0.36918548, 0.0027752921, 0.008025383
+12, "Drupal_employee_directory.csv@Office Phone;Employee_directory.csv@Office Phone", 0.80813736, 0.81787395, 1.0, 1, 0.42097998, 2.3942182E-5, 0.008025383
