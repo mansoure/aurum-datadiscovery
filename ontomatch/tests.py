@@ -73,11 +73,17 @@ if __name__ == "__main__":
     glove_api.load_model(path_to_glove_model)
     print("Loading language model...OK")
 
+    s = time.time()
     # file will PKFK edges
-    pos_matchings, neg_matchings = curate_pkfk_edges("/Users/emansour/elab/DAGroup/DataCivilizer/Aurum-GitHub/eva_ssproject/chembl_22_PKFK674_397.csv")
-
+    # pos_matchings, neg_matchings = curate_pkfk_edges("/Users/emansour/elab/DAGroup/DataCivilizer/Aurum-GitHub/eva_ssproject/chembl_22_PKFK674_397.csv")
+    pos_matchings, neg_matchings = curate_pkfk_edges("/Users/emansour/elab/DAGroup/DataCivilizer/Aurum-GitHub/eva_ssproject/chembl_22_PKFK674_298.csv")
+    # pos_matchings, neg_matchings = curate_pkfk_edges("/Users/emansour/elab/DAGroup/DataCivilizer/Aurum-GitHub/eva_ssproject/chembl_22_PKFK674.csv")
     get_recall_ratio(pos_matchings, neg_matchings, "/Users/emansour/elab/DAGroup/DataCivilizer/Aurum-GitHub/eva_ssproject/chembl_FKC_Edges_all.txt")
+    e = time.time()
+    print("filtering FP took: " + str(e - s))
     exit()
+
+
 
 
 
