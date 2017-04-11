@@ -56,12 +56,12 @@ def curate_pkfk_edges(file_name):
                 pos_matchings.append(match)
 
     print('positive PKFK edges are ' + str(len(pos_matchings)))
-    for el in pos_matchings:
-        print(el)
+    # for el in pos_matchings:
+    #     print(el)
 
     print('negative PKFK edges are ' + str(len(neg_matchings)))
-    for el in neg_matchings:
-        print(el)
+    # for el in neg_matchings:
+    #     print(el)
     return pos_matchings, neg_matchings
 
 
