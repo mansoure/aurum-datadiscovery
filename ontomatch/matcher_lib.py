@@ -108,7 +108,7 @@ class SimpleTrie:
 
             # Does the max representing child cuts?
             ratio_cut = float(max_repr / num_seqs)
-            if ratio_cut > 0.35:  # if cuts, keep digging
+            if ratio_cut > 0.9:  # if cuts, keep digging
                 return summarize_seq(num_seqs, subtree[chosen_child], chosen_child)
             else:  # i then summarize
                 matchings = self._reduce_matchings(subtree, set())
@@ -205,7 +205,8 @@ def summarize_matchings_to_ancestor(om, matchings, threshold_to_summarize=2, sum
         trie.add_sequences(sequences, seq_corresponding_matching)
         matching_to_be_summarized, cutter = trie.summarize(len(sequences))
         summ_matchings = []
-        if (len(matching_to_be_summarized) / len(matchings)) > summary_ratio:  # good summarization
+        # if (len(matching_to_be_summarized) / len(matchings)) > summary_ratio:  # good summarization
+        if (len(matching_to_be_summarized) / len(matchings)) > 0.9:  # good summarization
             # get level of class
             root_to_class_name = handler.ancestors_of_class(cutter)
             root_to_class_name = handler.name_of_sequence(root_to_class_name)
