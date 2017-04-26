@@ -2874,10 +2874,7 @@ if __name__ == "__main__":
 
     #combine_and_report_results("raw/", "MATCHINGS_GROUND_TRUTH_CHEMBL")
 
-    st = time.time()
     cl, cs, om = local_test("raw/", "MATCHINGS_GROUND_TRUTH_CHEMBL")
-    et = time.time()
-    print("total time ", et-st)
     exit()
 
     cs = [(el, "none") for el in cs]
