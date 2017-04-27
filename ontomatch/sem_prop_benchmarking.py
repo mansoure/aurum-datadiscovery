@@ -1582,7 +1582,9 @@ def local_test(path_to_raw_data, path_to_ground_truth_file):
     # combined_list, combined_sum = test1("test1", l4=l4, l5=l5, nl42=[], nl52=[], l42=[], l52=[], l1=[], l7=[])
     # combined_list, combined_sum = test1("test1", l4=l4, l5=l5, nl42=nl42, nl52=nl52, l42=[], l52=[], l1=[], l7=[])
     # combined_list, combined_sum = test1("test1", l4=l4, l5=l5, nl42=nl42, nl52=nl52, l42=l42, l52=l52, l1=[], l7=[])
-    combined_list, combined_sum = test1("test1", l4=l4, l5=l5, nl42=nl42, nl52=nl52, l42=l42, l52=l52, l1=l1, l7=l7)
+    # combined_list, combined_sum = test1("test1", l4=l4, l5=l5, nl42=nl42, nl52=nl52, l42=l42, l52=l52, l1=l1, l7=l7)
+
+    combined_list, combined_sum = test1("test1", l4=[], l5=[], nl42=[], nl52=[], l42=l42, l52=l52, l1=[], l7=[])
 
     print("num combined_list: " + str(len(combined_list)))
     for m in combined_list:
@@ -2864,8 +2866,8 @@ if __name__ == "__main__":
     #                         "../glove/glove.6B.100d.txt",
     #                         "results/")
 
-    # generate_results_battery_parameters("../models/chembl22/", "efo", "cache_onto/efo.pkl",
-    #                                     "../glove/glove.6B.100d.txt", "raw/")
+    generate_results_battery_parameters("../models/chembl22/", "efo", "cache_onto/efo.pkl",
+                                        "../glove/glove.6B.100d.txt", "raw/")
     #
     # generate_results_battery_parameters2("../models/chembl22/", "efo", "cache_onto/efo.pkl",
     #                                     "../glove/glove.6B.100d.txt", "raw/")
