@@ -274,6 +274,9 @@ def summarize_matchings_to_ancestor(om, matchings, threshold_to_summarize=2, sum
             root_to_class_name = handler.name_of_sequence(root_to_class_name)
             if len(root_to_class_name) > 2:
                 sch, cla = list(matching_to_be_summarized)[0]
+                # mList = ['Drug', 'Organism', 'Assay', 'Protein', 'Genetic Variation', 'Lympoid Tissue', 'Organism Part']
+                # if cutter in mList:
+                #     print(cutter)
                 new_match = (sch, (cla[0], cutter))  # the match that summarizes the previous
                 if summarize_or_remove:
                     summ_matchings.append(new_match)
