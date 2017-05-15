@@ -10,6 +10,7 @@ from api.reporting import Report
 from knowledgerepr import fieldnetwork
 from ddapi import API
 import os
+from subprocess import Popen
 
 
 
@@ -29,6 +30,16 @@ def init_component(data_path, model_path):
     tables_dfs = read_tables(data_path)
     dirty_cells = read_dirty_cells()
     return (api, reporting, corpus, tables_dfs, dirty_cells)
+
+def cleanliness_estimation(data_path):
+    program=data_path+"Cleanliness_Estimation/CE"
+    shell_script = data_path+"Cleanliness_Estimation/Run.sh"
+    Process=Popen([shell_script,str(data_path), str(program)])
+    
+
+def display_violations():
+    tab_content = pd.read_csv(filepath_or_buffer="violations.csv", delimiter=',', quoting=csv.QUOTE_ALL, doublequote=True)    
+    return tab_content
 
 def read_dirty_cells():
     dirty_cells = []
@@ -113,7 +124,7 @@ def load_table_cleanliness(table_name, tables_dfs, dirty_cells):
     return format_df(df, tab_dirty_cells)
 
 def load_table(table_name):
-    tab_content = pd.read_csv(filepath_or_buffer=table_name, delimiter=',', quoting=csv.QUOTE_ALL, doublequote=True)
+    tab_content = pd.read_csv(filepath_or_buffer=table_name, delimiter=',', quoting=csv.QUOTE_ALL, doublequote=True,  encoding = "ISO-8859-1")
     return tab_content
 
 def get_table(table_name, tables_dfs):
