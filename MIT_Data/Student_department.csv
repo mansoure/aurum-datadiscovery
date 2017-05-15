@@ -1,0 +1,71 @@
+Department Code,Department Name,Department Full Name,School Code,School Name
+2,Mechanical Engineering,  2 -Mechanical Engineering,E,Engineering
+BEH,Bioengineering & Envir. Health,BEH -Bioengineering & Envir. Health,E,Engineering
+CAES,Center for Adv Educ Services,CAES-Center for Adv Educ Services,Y,"MIT, academic"
+NIR,Brandeis Cross-Enroll Prog,NIR -Brandeis Cross-Enroll Prog,Z,Non-MIT
+OR,Operations Research,OR  -Operations Research,M,Sloan School of Management
+RED,Center for Real Estate Develop,RED -Center for Real Estate Develop,A,Architecture and Planning
+TPP,Technology and Policy Program,TPP -Technology and Policy Program,E,Engineering
+21L,Literature, 21L-Literature,H,"Hum, Arts & Social Sciences"
+5,Chemistry,  5 -Chemistry,S,Science
+ASP,Advanced Study Program,ASP -Advanced Study Program,E,Engineering
+NIN,Endicott Coll Cross-Enroll Pro,NIN -Endicott Coll Cross-Enroll Pro,Z,Non-MIT
+BE,Biological Engineering,BE  -Biological Engineering,E,Engineering
+NIA,Non-Institute-MFA/MCA,NIA -Non-Institute-MFA/MCA,Z,Non-MIT
+NONE,Freshmen,NONE-Freshmen,Y,"MIT, academic"
+21A,Anthropology, 21A-Anthropology,H,"Hum, Arts & Social Sciences"
+9,Brain and Cognitive Sciences,  9 -Brain and Cognitive Sciences,S,Science
+DOM,Domestic Study Program,DOM -Domestic Study Program,Y,"MIT, academic"
+EM,System Design & Management Prg,EM  -System Design & Management Prg,E,Engineering
+HPM,Health Policy & Management,HPM -Health Policy & Management,T,Whitaker Coll of HST;  HST
+NIW,Wellesley Cross-Enrollment Pro,NIW -Wellesley Cross-Enrollment Pro,Z,Non-MIT
+UND,Undesignated Sophomore,UND -Undesignated Sophomore,Y,"MIT, academic"
+15,Management, 15 -Management,M,Sloan School of Management
+MAS,Prog in Media Arts Sciences,MAS -Prog in Media Arts Sciences,A,Architecture and Planning
+10,Chemical Engineering, 10 -Chemical Engineering,E,Engineering
+22,Nuclear Engineering, 22 -Nuclear Engineering,E,Engineering
+3,Materials Science and Eng,  3 -Materials Science and Eng,E,Engineering
+NIT,Tufts Cross-Enrollment Prog,NIT -Tufts Cross-Enrollment Prog,Z,Non-MIT
+21,Humanities, 21 -Humanities,H,"Hum, Arts & Social Sciences"
+21S,Humanities and Science, 21S-Humanities and Science,H,"Hum, Arts & Social Sciences"
+8,Physics,  8 -Physics,S,Science
+CDO,Computation for Des & Optmiz,CDO -Computation for Des & Optmiz,E,Engineering
+CTS,Ctr for Transportation Studies,CTS -Ctr for Transportation Studies,E,Engineering
+EN,Center for Adv Eng Studies,EN  -Center for Adv Eng Studies,E,Engineering
+NIE,Non-Institute Exchange Student,NIE -Non-Institute Exchange Student,Z,Non-MIT
+NIS,Salem State Cross-Enroll Prog,NIS -Salem State Cross-Enroll Prog,Z,Non-MIT
+14,Economics, 14 -Economics,H,"Hum, Arts & Social Sciences"
+17,Political Science, 17 -Political Science,H,"Hum, Arts & Social Sciences"
+21M,Music and Theater Arts, 21M-Music and Theater Arts,H,"Hum, Arts & Social Sciences"
+24,Linguistics and Philosophy, 24 -Linguistics and Philosophy,H,"Hum, Arts & Social Sciences"
+1,Civil and Environmental Eng,  1 -Civil and Environmental Eng,E,Engineering
+7,Biology,  7 -Biology,S,Science
+ESD,Engineering Systems Division,ESD -Engineering Systems Division,E,Engineering
+NIV,Visiting Research Cross-Enroll,NIV -Visiting Research Cross-Enroll,Z,Non-MIT
+18,Mathematics, 18 -Mathematics,S,Science
+21E,Humanities and Engineering, 21E-Humanities and Engineering,H,"Hum, Arts & Social Sciences"
+6,Electrical Eng & Computer Sci,  6 -Electrical Eng & Computer Sci,E,Engineering
+CSB,Computational and Systems Bio,CSB -Computational and Systems Bio,E,Engineering
+NIG,Gordon Coll Cross-Enroll Prog,NIG -Gordon Coll Cross-Enroll Prog,Z,Non-MIT
+NIU,BU Cross-Enrollment Prog,NIU -BU Cross-Enrollment Prog,Z,Non-MIT
+11,Urban Studies and Planning, 11 -Urban Studies and Planning,A,Architecture and Planning
+16,Aeronautics and Astronautics, 16 -Aeronautics and Astronautics,E,Engineering
+4,Architecture,  4 -Architecture,A,Architecture and Planning
+21H,History, 21H-History,H,"Hum, Arts & Social Sciences"
+NIL,Lesley Coll Cross-Enroll Prog,NIL -Lesley Coll Cross-Enroll Prog,Z,Non-MIT
+STS,"Science, Technology & Society","STS -Science, Technology & Society",H,"Hum, Arts & Social Sciences"
+TOX,Division of Toxicology,TOX -Division of Toxicology,T,Whitaker Coll of HST;  HST
+21W,Writing & Humanistic Studies, 21W-Writing & Humanistic Studies,H,"Hum, Arts & Social Sciences"
+NIC,Grad Consortium Women's Stud,NIC -Grad Consortium Women's Stud,Z,Non-MIT
+20,Biological Engineering, 20 -Biological Engineering,E,Engineering
+NIH,Harvard Cross-Enrollment Prog,NIH -Harvard Cross-Enrollment Prog,Z,Non-MIT
+SDM,System Design & Management Prg,SDM -System Design & Management Prg,E,Engineering
+21F,Global Studies & Languages, 21F-Global Studies & Languages,H,"Hum, Arts & Social Sciences"
+FOR,Foreign Study Program,FOR -Foreign Study Program,Y,"MIT, academic"
+HST,Health Sciences & Technology,HST -Health Sciences & Technology,E,Engineering
+SCM,Supply Chain Management Progra,SCM -Supply Chain Management Progra,E,Engineering
+12,"Earth, Atmos & Planetary Sci"," 12 -Earth, Atmos & Planetary Sci",S,Science
+13,Ocean Engineering, 13 -Ocean Engineering,E,Engineering
+CMS,Comparative Media Studies,CMS -Comparative Media Studies,H,"Hum, Arts & Social Sciences"
+PEP,Professional Education Prog,PEP -Professional Education Prog,E,Engineering
+WCD,Wellesley Double Degree Prog,WCD -Wellesley Double Degree Prog,Y,"MIT, academic"
