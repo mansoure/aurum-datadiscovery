@@ -584,12 +584,12 @@ def test_e2e(path_to_serialized_model):
     #
     # all_classes = hand.classes()
 
-    # print("Finding matchings...")
-    # st = time.time()
-    # matchings = om.find_matchings()
-    # et = time.time()
-    # print("Finding matchings...OK")
-    # print("Took: " + str(et-st))
+    print("Finding matchings...")
+    st = time.time()
+    matchings = om.find_matchings()
+    et = time.time()
+    print("Finding matchings...OK")
+    print("Took: " + str(et-st))
     #
     # print("Writing MATCHINGS output to disk...")
     # with open('matchings_chembl_drugbank2', 'w') as f:

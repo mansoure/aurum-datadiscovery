@@ -1060,13 +1060,13 @@ def generate_results_battery_parameters(path_to_serialized_model, onto_name,
     # l42_matchings_04 = None
     # neg_l42_matchings_02 = None
 
-    l42_matchings_05, neg_l42_matchings_03 = matcherlib.find_relation_class_name_sem_matchings(network, om.kr_handlers,
-                                                                                         sem_sim_threshold=0.5,
-                                                                                         negative_signal_threshold=0.3,
-                                                                                         add_exact_matches=False,
-                                                                                         penalize_unknown_word=True)
-    write_matchings_to(path_to_results + 'l42_05', l42_matchings_05)
-    write_matchings_to(path_to_results + 'neg_l42_03', neg_l42_matchings_03)
+    # l42_matchings_05, neg_l42_matchings_03 = matcherlib.find_relation_class_name_sem_matchings(network, om.kr_handlers,
+    #                                                                                      sem_sim_threshold=0.5,
+    #                                                                                      negative_signal_threshold=0.5,
+    #                                                                                      add_exact_matches=False,
+    #                                                                                      penalize_unknown_word=True)
+    # write_matchings_to(path_to_results + 'l42_05', l42_matchings_05)
+    # write_matchings_to(path_to_results + 'neg_l42_05', neg_l42_matchings_03)
 
     # l42_matchings_06, neg_l42_matchings_04 = matcherlib.find_relation_class_name_sem_matchings(network, om.kr_handlers,
     #                                                                                      sem_sim_threshold=0.6,
@@ -1098,11 +1098,11 @@ def generate_results_battery_parameters(path_to_serialized_model, onto_name,
 
     l52_matchings_05, neg_l52_matchings_03 = matcherlib.find_relation_class_attr_name_sem_matchings(network, om.kr_handlers,
                                                                                           semantic_sim_threshold=0.5,
-                                                                                          negative_signal_threshold=0.3,
+                                                                                          negative_signal_threshold=0.5,
                                                                                           penalize_unknown_word=True,
                                                                                           add_exact_matches=False)
     write_matchings_to(path_to_results + 'l52_05', l52_matchings_05)
-    write_matchings_to(path_to_results + 'neg_l52_03', neg_l52_matchings_03)
+    write_matchings_to(path_to_results + 'neg_l52_05', neg_l52_matchings_03)
 
     # l52_matchings_06, neg_l52_matchings_04 = matcherlib.find_relation_class_attr_name_sem_matchings(network, om.kr_handlers,
     #                                                                                       semantic_sim_threshold=0.6,
@@ -1582,6 +1582,8 @@ def local_test(path_to_raw_data, path_to_ground_truth_file):
     # combined_list, combined_sum = test1("test1", l4=l4, l5=l5, nl42=[], nl52=[], l42=[], l52=[], l1=[], l7=[])
     # combined_list, combined_sum = test1("test1", l4=l4, l5=l5, nl42=nl42, nl52=nl52, l42=[], l52=[], l1=[], l7=[])
     # combined_list, combined_sum = test1("test1", l4=l4, l5=l5, nl42=nl42, nl52=nl52, l42=l42, l52=l52, l1=[], l7=[])
+    # combined_list, combined_sum = test1("test1", l4=l4, l5=l5, nl42=nl42, nl52=nl52, l42=l42, l52=l52, l1=l1, l7=l7)
+    # AVG exp for SIGMOD submission
     combined_list, combined_sum = test1("test1", l4=l4, l5=l5, nl42=nl42, nl52=nl52, l42=l42, l52=l52, l1=l1, l7=l7)
 
 
