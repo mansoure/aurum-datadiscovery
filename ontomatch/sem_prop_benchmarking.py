@@ -2857,7 +2857,8 @@ if __name__ == "__main__":
 
     # Load glove model
     print("Loading language model...")
-    path_to_glove_model = "../glove/glove.6B.100d.txt"
+    # path_to_glove_model = "../glove/glove.6B.100d.txt"
+    path_to_glove_model = "../glove/glove.ChembleEFOGO.200d.txt"
     glove_api.load_model(path_to_glove_model)
     print("Loading language model...OK")
 
@@ -2868,8 +2869,8 @@ if __name__ == "__main__":
     #                         "../glove/glove.6B.100d.txt",
     #                         "results/")
 
-    # generate_results_battery_parameters("../models/chembl22/", "efo", "cache_onto/efo.pkl",
-    #                                     "../glove/glove.6B.100d.txt", "raw/")
+    generate_results_battery_parameters("../models/chembl22/", "efo", "cache_onto/efo.pkl",
+                                        "../glove/glove.6B.100d.txt", "raw/")
     #
     # generate_results_battery_parameters2("../models/chembl22/", "efo", "cache_onto/efo.pkl",
     #                                     "../glove/glove.6B.100d.txt", "raw/")

@@ -11,6 +11,7 @@ from dataanalysis import dataanalysis as da
 import operator
 from collections import namedtuple
 import numpy as np
+from gensim import models
 
 
 class MatchingType(Enum):
@@ -514,7 +515,97 @@ def get_ban_indexes(relation1, relation2):
         return ban_index1, ban_index2
 
 
+def compute_semantic_similarity_doc2vec(att1, att2, model_loaded):
+    # model_loaded = models.Doc2Vec.load('my_model.doc2vec')
+    sim = 0
+    try:
+        sim = model_loaded.wv.n_similarity(att1, att2)
+    except:
+        pass
+
+    strong_signal = False
+    if sim >= 0.5:
+        strong_signal = True
+
+    return sim, strong_signal
+
+
+
+
 def find_relation_class_attr_name_sem_matchings(network, kr_handlers,
+                                                semantic_sim_threshold=0.5,
+                                                sensitivity_neg_signal=0.5,
+                                                negative_signal_threshold=0.4,
+                                                penalize_unknown_word=False,
+                                                add_exact_matches=True):
+    # Retrieve relation names
+    st = time.time()
+    model_loaded = models.Doc2Vec.load('my_model.doc2vec')
+    print ("model_loaded ... done!")
+    names = []
+    seen_fields = set()
+
+    for (db_name, source_name, field_name, _) in network.iterate_values():
+        orig_field_name = field_name
+        key_seen = source_name + field_name
+        if key_seen not in seen_fields:
+            seen_fields.add(key_seen)  # seen already
+            field_name = nlp.camelcase_to_snakecase(field_name)
+            field_name = field_name.replace('-', ' ')
+            field_name = field_name.replace('_', ' ')
+            field_name = field_name.lower()
+            svs = []
+            for token in field_name.split():
+                svs.append(token)
+                # if token not in stopwords.words('english'):
+                #     sv = glove_api.get_embedding_for_word(token)
+                #     if sv is not None:
+                #         svs.append(sv)
+            names.append(('attribute', (db_name, source_name, orig_field_name), svs))
+
+    num_attributes_inserted = len(names)
+
+    # Retrieve class names
+    for kr_name, kr_handler in kr_handlers.items():
+        all_classes = kr_handler.classes()
+        for cl in all_classes:
+            original_cl_name = cl
+            #cl = nlp.camelcase_to_snakecase(cl)
+            cl = cl.replace('-', ' ')
+            cl = cl.replace('_', ' ')
+            cl = cl.lower()
+            svs = []
+            for token in cl.split():
+                svs.append(token)
+    #             if token not in stopwords.words('english'):
+    #                 sv = glove_api.get_embedding_for_word(token)
+    #                 if sv is not None:
+    #                     svs.append(sv)
+            names.append(('class', (kr_name, original_cl_name), svs))
+
+    print("N equals: " + str(len(names)))
+
+    pos_matchings = []
+    neg_matchings = []
+    for idx_rel in range(0, num_attributes_inserted):  # Compare only with classes
+        for idx_class in range(num_attributes_inserted, len(names)):
+            svs_rel = names[idx_rel][2]
+            svs_cla = names[idx_class][2]
+            semantic_sim, strong_signal = compute_semantic_similarity_doc2vec(svs_rel, svs_cla, model_loaded)
+            if strong_signal and semantic_sim > semantic_sim_threshold:
+                # match.format db_name, source_name, field_name -> class_name
+                match = ((names[idx_rel][1][0], names[idx_rel][1][1], names[idx_rel][1][2]), names[idx_class][1])
+                pos_matchings.append(match)
+            elif semantic_sim < negative_signal_threshold:
+                match = ((names[idx_rel][1][0], names[idx_rel][1][1], names[idx_rel][1][2]), names[idx_class][1])
+                neg_matchings.append(match)
+    et = time.time()
+    print("l52: " + str(et - st))
+    return pos_matchings, neg_matchings
+
+
+
+def find_relation_class_attr_name_sem_matchingsAVG(network, kr_handlers,
                                                 semantic_sim_threshold=0.5,
                                                 sensitivity_neg_signal=0.5,
                                                 negative_signal_threshold=0.4,
@@ -568,7 +659,7 @@ def find_relation_class_attr_name_sem_matchings(network, kr_handlers,
         for idx_class in range(num_attributes_inserted, len(names)):
             svs_rel = names[idx_rel][2]
             svs_cla = names[idx_class][2]
-            semantic_sim, strong_signal = SS.compute_semantic_similarityMax(svs_rel, svs_cla)
+            semantic_sim, strong_signal = SS.compute_semantic_similarityAVG(svs_rel, svs_cla)
             if strong_signal and semantic_sim > semantic_sim_threshold:
                 # match.format db_name, source_name, field_name -> class_name
                 match = ((names[idx_rel][1][0], names[idx_rel][1][1], names[idx_rel][1][2]), names[idx_class][1])
