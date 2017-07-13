@@ -289,6 +289,46 @@ def groupwise_semantic_sim(sv1, sv2, threshold):
     return to_ret
 
 
+def compute_semantic_similarityConcat(v, w,
+                                   signal_strength_threshold=0.5):
+    n = len(v)
+    m = len(w)
+    maxl = max(n, m)
+
+    if n == 0 or m == 0:
+        return 0, False
+
+    if n > m and len(w) > 0 and w[0] is not None:
+        dummyVec = w[0]
+    elif n < m and len(v) > 0 and v[0] is not None:
+        dummyVec = v[0]
+    else:
+        dummyVec = [0] * 100
+
+    vl = len(v[0])
+    UN = np.full((1, vl), 1)
+
+    vf = v[0]
+    wf = w[0]
+
+    for i in range(maxl - 1):
+        if i < n - 1:
+            vf = np.append(vf, v[i + 1])
+        else:
+            vf = np.append(vf, dummyVec)
+        if i < m - 1:
+            wf = np.append(wf, w[i + 1])
+        else:
+            wf = np.append(wf, dummyVec)
+
+    sim = glove_api.semantic_distance(vf, wf)
+    strong_signal = False
+    if sim >= signal_strength_threshold:
+        strong_signal = True
+
+    return sim, strong_signal
+
+
 def compute_semantic_similarityMin(sv1, sv2,
                                    signal_strength_threshold=0.5):
 
@@ -332,6 +372,28 @@ def compute_semantic_similarityMax(sv1, sv2,
 
     return sim, strong_signal
 
+def compute_semantic_similarityAdding(sv1, sv2,
+                                   signal_strength_threshold=0.5):
+
+    size = 100
+    new_sv1 = [0]*size
+    for a in sv1:
+        if a is not None:
+            new_sv1 = np.add(new_sv1, a)
+    # new_sv1 = np.divide(new_sv1, len(sv1))
+
+    new_sv2 = [0]*size
+    for b in sv2:
+        if b is not None:
+            new_sv2 = np.add(new_sv2, b)
+    # new_sv2 = np.divide(new_sv2, len(sv2))
+
+    sim = glove_api.semantic_distance(new_sv1, new_sv2)
+    strong_signal = False
+    if sim >= signal_strength_threshold:
+        strong_signal = True
+
+    return sim, strong_signal
 
 def compute_semantic_similarityAVG(sv1, sv2,
                                    signal_strength_threshold=0.5):

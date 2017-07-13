@@ -1096,13 +1096,13 @@ def generate_results_battery_parameters(path_to_serialized_model, onto_name,
     # l52_matchings_04 = None
     # neg_l52_matchings_02 = None
 
-    l52_matchings_05, neg_l52_matchings_03 = matcherlib.find_relation_class_attr_name_sem_matchings(network, om.kr_handlers,
+    l52_matchings_05, neg_l52_matchings_05 = matcherlib.find_relation_class_attr_name_sem_matchings(network, om.kr_handlers,
                                                                                           semantic_sim_threshold=0.5,
                                                                                           negative_signal_threshold=0.5,
                                                                                           penalize_unknown_word=True,
                                                                                           add_exact_matches=False)
     write_matchings_to(path_to_results + 'l52_05', l52_matchings_05)
-    write_matchings_to(path_to_results + 'neg_l52_05', neg_l52_matchings_03)
+    write_matchings_to(path_to_results + 'neg_l52_05', neg_l52_matchings_05)
 
     # l52_matchings_06, neg_l52_matchings_04 = matcherlib.find_relation_class_attr_name_sem_matchings(network, om.kr_handlers,
     #                                                                                       semantic_sim_threshold=0.6,
@@ -2857,8 +2857,8 @@ if __name__ == "__main__":
 
     # Load glove model
     print("Loading language model...")
-    # path_to_glove_model = "../glove/glove.6B.100d.txt"
-    path_to_glove_model = "../glove/glove.ChembleEFOGO.200d.txt"
+    path_to_glove_model = "../glove/glove.6B.100d.txt"
+    # path_to_glove_model = "../glove/glove.ChembleEFOGO.200d.txt"
     glove_api.load_model(path_to_glove_model)
     print("Loading language model...OK")
 

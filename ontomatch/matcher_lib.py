@@ -532,7 +532,7 @@ def compute_semantic_similarity_doc2vec(att1, att2, model_loaded):
 
 
 
-def find_relation_class_attr_name_sem_matchings(network, kr_handlers,
+def find_relation_class_attr_name_sem_matchingsDoc2vec(network, kr_handlers,
                                                 semantic_sim_threshold=0.5,
                                                 sensitivity_neg_signal=0.5,
                                                 negative_signal_threshold=0.4,
@@ -605,7 +605,7 @@ def find_relation_class_attr_name_sem_matchings(network, kr_handlers,
 
 
 
-def find_relation_class_attr_name_sem_matchingsAVG(network, kr_handlers,
+def find_relation_class_attr_name_sem_matchings(network, kr_handlers,
                                                 semantic_sim_threshold=0.5,
                                                 sensitivity_neg_signal=0.5,
                                                 negative_signal_threshold=0.4,
@@ -659,7 +659,7 @@ def find_relation_class_attr_name_sem_matchingsAVG(network, kr_handlers,
         for idx_class in range(num_attributes_inserted, len(names)):
             svs_rel = names[idx_rel][2]
             svs_cla = names[idx_class][2]
-            semantic_sim, strong_signal = SS.compute_semantic_similarityAVG(svs_rel, svs_cla)
+            semantic_sim, strong_signal = SS.compute_semantic_similarityConcat(svs_rel, svs_cla)
             if strong_signal and semantic_sim > semantic_sim_threshold:
                 # match.format db_name, source_name, field_name -> class_name
                 match = ((names[idx_rel][1][0], names[idx_rel][1][1], names[idx_rel][1][2]), names[idx_class][1])

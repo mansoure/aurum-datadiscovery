@@ -14,7 +14,7 @@ def get_embedding_for_word(word):
 
 
 def semantic_distance(v1, v2):
-    sim = np.dot(v1, v2.T)
+    sim = np.dot(v1, v2)
     return sim
 
 
