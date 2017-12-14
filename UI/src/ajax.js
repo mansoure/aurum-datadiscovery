@@ -3,7 +3,7 @@ var callback;
 
 export function makeRequest(query, newCallback) {
   callback = newCallback;
-  var url = "http://127.0.0.1:5000/query/" + query;
+  var url = "http://127.0.0.1:8085/query/" + query;
 
   httpRequest = new XMLHttpRequest();
 
@@ -18,7 +18,7 @@ export function makeRequest(query, newCallback) {
 
 export function makeConvert(identifier, newCallback) {
   callback = newCallback;
-  var url = "http://127.0.0.1:5000/convert/" + identifier;
+  var url = "http://127.0.0.1:8085/convert/" + identifier;
 
   httpRequest = new XMLHttpRequest();
 
@@ -33,7 +33,7 @@ export function makeConvert(identifier, newCallback) {
 
 export function makeInspect(identifier, newCallback) {
   callback = newCallback;
-  var url = "http://127.0.0.1:5000/inspect/" + identifier;
+  var url = "http://127.0.0.1:8085/inspect/" + identifier;
 
   httpRequest = new XMLHttpRequest();
 
@@ -48,7 +48,7 @@ export function makeInspect(identifier, newCallback) {
 
 export function makeClean(source, target, newCallback) {
   callback = newCallback;
-  var url = "http://127.0.0.1:5000/clean/" + source + "/" + target;
+  var url = "http://127.0.0.1:8085/clean/" + source + "/" + target;
 
   httpRequest = new XMLHttpRequest();
 
