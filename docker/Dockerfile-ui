@@ -38,7 +38,8 @@ ENV LANG=C.UTF-8
 COPY . /aurum
 
 RUN cd /aurum/UI && \
-    npm install
+    npm install \
+    npm i --save-dev prop-types
 
 RUN sed -i "s/^\s*db_host\s*=.*$/db_host = 'elasticsearch'/" /aurum/config.py
 

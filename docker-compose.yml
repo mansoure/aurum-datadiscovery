@@ -23,10 +23,21 @@ services:
   elasticsearch:
     image: elasticsearch:2.3.3
     volumes:
-      - ./data/elasticsearch:/usr/share/elasticsearch/data
+      - $PWD/data/elasticsearch:/usr/share/elasticsearch/data
+    # environment:
+    #         - cluster.name=Docker-elasticsearch
+    #         - node.name="ES-node"
+    #         - http.host=0.0.0.0
+    #         - transport.host=0.0.0.0        
+    #         - network.publish_host=127.0.0.1
+    #         - transport.tcp.port=9300
+    #         - transport.publish_port=9200
+    #         # - discovery.type=single-node
+    #         # - xpack.security.enabled=false
+    #         - client.transport.sniff=true
     ports:
-      - 9200:9200
-      - 9300:9300
+      - "9200:9200"
+      - "9300:9300"
     networks:
       aurum_net:
         aliases:
@@ -37,13 +48,14 @@ services:
       - elasticsearch
     image: aurum/frontend
     build:
-      context: .
+      context: $PWD
       dockerfile: docker/Dockerfile-ui
     volumes:
-      - ./data/models:/aurum/data/models
+      - $PWD/data/models:/aurum/data/models
+      - $PWD/data/pickles:/aurum/data/pickles
     ports:
-      - 3000:3000
-      - 5000:5000
+      - "3000:3000"
+      - "5000:5000"
     networks:
       aurum_net:
         aliases:
@@ -54,10 +66,10 @@ services:
       - elasticsearch
     image: aurum/ddprofiler
     build:
-      context: .
+      context: $PWD
       dockerfile: docker/Dockerfile-ddprofiler
     volumes:
-      - ./data
+      - $PWD/data
     networks:
       aurum_net:
         aliases:
@@ -71,7 +83,7 @@ services:
       context: .
       dockerfile: docker/Dockerfile-networkbuildercoordinator
     volumes:
-      - ./data/models:/output
+      - $PWD/data/models:/output
     networks:
       aurum_net:
         aliases:
@@ -85,9 +97,9 @@ services:
       context: .
       dockerfile: docker/Dockerfile-jupyter-notebook
     volumes:
-      - ./data/models
+      - $PWD/data/models
     ports:
-      - 8888:8888
+      - "8888:8888"
     networks:
       aurum_net:
         aliases:
