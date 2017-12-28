@@ -16,8 +16,8 @@ version: '3'
 services:
   elasticsearch:
     image: elasticsearch:2.3.3
-    volumes:
-      - $PWD/data/elasticsearch:/usr/share/elasticsearch/data
+    # volumes:
+    #   - $PWD/data/elasticsearch:/usr/share/elasticsearch/data
     # environment:
     #         - cluster.name=Docker-elasticsearch
     #         - node.name="ES-node"
