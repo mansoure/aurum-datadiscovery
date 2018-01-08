@@ -1569,8 +1569,8 @@ def local_test(path_to_raw_data, path_to_ground_truth_file):
 
     l1 = read(path_to_raw_data + "l1")
     l7 = read(path_to_raw_data + "l7")
-    l4 = read(path_to_raw_data + "l4_02")  #l4_02 0.015/0.46 - 0.33/0.38 (summary=2)
-    l5 = read(path_to_raw_data + "l5_02")  #l5_02
+    l4 = read(path_to_raw_data + "l4_08")  #l4_02 0.015/0.46 - 0.33/0.38 (summary=2)
+    l5 = read(path_to_raw_data + "l5_08")  #l5_02
     l42 = read(path_to_raw_data + "l42_05")  #l42_05
     l52 = read(path_to_raw_data + "l52_05")  #l52_05
     nl42 = read(path_to_raw_data + "neg_l42_05")  #neg_l42_05
@@ -1579,9 +1579,13 @@ def local_test(path_to_raw_data, path_to_ground_truth_file):
     #combined_list, combined_sum = syn_and_we(l4, l5, l42, l52, "syn_and_we_02_03")
     #combined_list, combined_sum = test1("test1", l4, l5, nl42=nl42, nl52=nl52, l42=l42, l52=l52, l1=l1, l7=l7)
 
+    # Table2-A-Test1
     # combined_list, combined_sum = test1("test1", l4=l4, l5=l5, nl42=[], nl52=[], l42=[], l52=[], l1=[], l7=[])
+    #Table2-B-Test1
     # combined_list, combined_sum = test1("test1", l4=l4, l5=l5, nl42=nl42, nl52=nl52, l42=[], l52=[], l1=[], l7=[])
+    #Table2-C-Test1
     # combined_list, combined_sum = test1("test1", l4=l4, l5=l5, nl42=nl42, nl52=nl52, l42=l42, l52=l52, l1=[], l7=[])
+    #Table2-D-Test1, SemProp-Test2
     combined_list, combined_sum = test1("test1", l4=l4, l5=l5, nl42=nl42, nl52=nl52, l42=l42, l52=l52, l1=l1, l7=l7)
 
     # combined_list, combined_sum = test1("test1", l4=[], l5=[], nl42=[], nl52=[], l42=l42, l52=l52, l1=[], l7=[])
@@ -1601,7 +1605,7 @@ def local_test(path_to_raw_data, path_to_ground_truth_file):
     print("the matchings that are removed " + str(len(combined_list) - len(combined_sum)))
     for m in combined_list:
         if m not in combined_sum:
-            # continue
+            continue
             print(str(m))
 
     print("the matchings that we could not find - list")
