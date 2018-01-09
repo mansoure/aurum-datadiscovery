@@ -1569,8 +1569,8 @@ def local_test(path_to_raw_data, path_to_ground_truth_file):
 
     l1 = read(path_to_raw_data + "l1")
     l7 = read(path_to_raw_data + "l7")
-    l4 = read(path_to_raw_data + "l4_08")  #l4_02 0.015/0.46 - 0.33/0.38 (summary=2)
-    l5 = read(path_to_raw_data + "l5_08")  #l5_02
+    l4 = read(path_to_raw_data + "l4_02")  #l4_02 0.015/0.46 - 0.33/0.38 (summary=2)
+    l5 = read(path_to_raw_data + "l5_02")  #l5_02
     l42 = read(path_to_raw_data + "l42_05")  #l42_05
     l52 = read(path_to_raw_data + "l52_05")  #l52_05
     nl42 = read(path_to_raw_data + "neg_l42_05")  #neg_l42_05
