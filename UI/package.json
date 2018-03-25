@@ -5,6 +5,7 @@
   "devDependencies": {
     "autoprefixer-stylus": "0.10.0",
     "concurrently": "3.0.0",
+    "prop-types": "^15.6.1",
     "react-scripts": "0.6.1",
     "stylus": "0.54.5"
   },

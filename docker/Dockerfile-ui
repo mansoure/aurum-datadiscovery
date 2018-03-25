@@ -38,11 +38,12 @@ ENV LANG=C.UTF-8
 COPY . /aurum
 
 RUN cd /aurum/UI && \
-    npm install
+    npm install && \
+    npm i --save-dev prop-types
 
 RUN sed -i "s/^\s*db_host\s*=.*$/db_host = 'elasticsearch'/" /aurum/config.py
 
-RUN sed -i "s|^\s*path_to_serialized_model\s*=\s*parentdir\s*\+\s*.*$|path_to_serialized_model = parentdir + '/data/pickles/'|" /aurum/frontend/app.py
+RUN sed -i "s|^\s*path_to_serialized_model\s*=\s*parentdir\s*\+\s*.*$|path_to_serialized_model = parentdir + '/data/models/'|" /aurum/frontend/app.py
 
 CMD (cd /aurum/UI/ && npm run watch &>/dev/null &) && \
     (cd /aurum/frontend/ && flask run --host=0.0.0.0)

@@ -7,7 +7,7 @@
 # 2. docker-compose run --rm -T profiler -e "<profiler args here>"
 #     Runs the ddprofiler with the CSVs located in data/csvs. Writes to the above elasticsearch container.
 # 3*. docker-compose build nbc
-# 3. docker-compose run --rm -T nbc
+  # 3. docker-compose run --rm -T nbc
 #     Runs networkbuildercoordinator.py with the above elasticsearch and saves its files to data/pickles.
 # 4. docker-compose up notebook
 #     Runs a Jupyter notebook with Aurum libraries and the above pickles from data/pickles.
@@ -80,21 +80,21 @@ services:
         aliases:
           - notebook
 
-#  frontend:
-#    depends_on:
-#      - elasticsearch
-#    image: aurum/frontend
-#    build:
-#      context: .
-#      dockerfile: docker/Dockerfile-ui
-#    volumes:
-#      - ./data/models:/aurum/data/models
-#    ports:
-#      - 3000:3000
-#      - 5000:5000
-#    networks:
-#      aurum_net:
-#        aliases:
-#          - frontend
+  frontend:
+    depends_on:
+     - elasticsearch
+    image: aurum/frontend
+    build:
+     context: .
+     dockerfile: docker/Dockerfile-ui
+    volumes:
+     - ./data/models:/aurum/data/models
+    ports:
+     - 3000:3000
+     - 5000:5000
+    networks:
+     aurum_net:
+       aliases:
+         - frontend
 
 
