@@ -87,7 +87,7 @@ def export():
     json_dict["CSV"]["dir"] = "./"
     json_dict["CSV"]["table"] = sources_str
     json_obj = json.dumps(json_dict)
-    with open("data.json", 'w') as f:
+    with open("/aurum/data/models/data.json", 'w') as f:
         f.write(json_obj)
 
     return jsonify("ok!")
