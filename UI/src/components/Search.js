@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeRequest } from '../ajax'
+import { makeRequest, makeExport } from '../ajax'
 
 class Search extends React.Component {
   constructor() {
@@ -35,6 +35,11 @@ class Search extends React.Component {
     makeRequest(userQuery, this.handleResponse);
   }
 
+  handleExport(e){
+    makeExport(this.handleResponse);
+    window.alert("Discovered data has been exported")
+  }
+
   render() {
 
    return (
@@ -45,6 +50,8 @@ class Search extends React.Component {
         placeholder="Search by table, column, or keyword"
         onChange={(e) => this.handleChange(e)}
        />
+       <button type="button"
+       onClick={(e) => this.handleExport(e)}>Export Results</button>
     </header>
     )
   }
